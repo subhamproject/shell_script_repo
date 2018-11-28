@@ -1,0 +1,31 @@
+https://clubmate.fi/associative-arrays-in-bash/
+https://lzone.de/cheat-sheet/Bash%20Associative%20Array'
+https://stackoverflow.com/questions/40387649/reading-a-file-into-an-associative-array-in-bash
+
+
+#!/bin/bash
+declare -A array=()
+IFS=':'
+while read key value
+do
+array[$key]=$value
+done < file.txt
+for key in ${!array[@]}
+do
+echo $key:${array[$key]}
+done
+unset IFS
+
+
+#!/bin/bash
+declare -A address
+while IFS=':' read name add
+do
+    address[$name]=$add
+    #echo "$name - ${address[$name]}"
+done < file.txt
+
+for name in "${!address[@]}"
+do
+    echo "$name:${address[$name]}"
+done
