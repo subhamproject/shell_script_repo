@@ -1,6 +1,8 @@
 https://clubmate.fi/associative-arrays-in-bash/
 https://lzone.de/cheat-sheet/Bash%20Associative%20Array'
 https://stackoverflow.com/questions/40387649/reading-a-file-into-an-associative-array-in-bash
+http://www.cs.umsl.edu/~sanjiv/classes/cs2750/lectures/kshfns.pdf
+https://www.geeksforgeeks.org/array-basics-shell-scripting-set-1/
 
 
 #!/bin/bash
