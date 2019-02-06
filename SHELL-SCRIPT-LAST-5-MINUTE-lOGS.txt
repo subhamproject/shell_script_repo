@@ -1,0 +1,16 @@
+https://www.alfredtong.com/linux/grep-log-file-last-5-minutes-contents-every-5-minutes-linux/
+
+
+
+#!/bin/bash
+# Usage: checkmessage.sh
+# Script that checks for occurrence of error message and email it
+#
+CHECK=$(awk -v d1="$(date --date="-5 min" "+%b %_d %H:%M")" -v d2="$(date "+%b %_d %H:%M")" '$0 > d1 && $0 < d2 || $0 ~ d2' /var/log/messages | grep -i "Error Message")
+CHECKCOUNT=$(awk -v d1="$(date --date="-5 min" "+%b %_d %H:%M")" -v d2="$(date "+%b %_d %H:%M")" '$0 > d1 && $0 < d2 || $0 ~ d2' /var/log/messages | grep -ci "Error Message") 
+if [ $CHECKCOUNT -gt 0 ] 
+then
+   echo $CHECK | /bin/mail -s "$CHECKCOUNT occurrences of the error message has been found in the last 5 minutes" youremail@hotmail.com 
+else
+   echo "Do nothing" > /dev/null
+fi
