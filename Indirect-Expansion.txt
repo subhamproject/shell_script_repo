@@ -1,0 +1,12 @@
+https://stackoverflow.com/questions/8515411/what-is-indirect-expansion-what-does-var-mean
+
+
+There appears to be an exception when the given "indirection" ends in a *, as it does here. In this case, it gives all variable names that start with the part you specified (N here). Bash can do that because it tracks variables and knows which ones exist.
+
+True indirection is this:
+Say I have a variable $VARIABLE set to 42, and I have another variable $NAME set to VARIABLE. ${!NAME} will give me 42. You use the value of one variable to tell you the name of another:
+
+$ NAME="VARIABLE"
+$ VARIABLE=42
+$ echo ${!NAME}
+42
