@@ -1,4 +1,4 @@
-#!/bin/bash                                                                                                                                          
+#!/bin/bash
 user_add () {
  while [ -z "${USERNAME}" ];do
  echo -e "Please enter username you wish to add?:- \c"
@@ -15,10 +15,13 @@ else
   [ $? -eq 0 ] && echo "Password has been set for user $USERNAME"
 fi
 }
-                                                                                                                                                     
+
 user_del () {
+ while [ -z "${USERNAME}" ];do
  echo -e "Please enter the user name you wish to delete?:- \c"
  read USERNAME
+ [ -z "${USERNAME}" ] && echo "Username Cannot be empty,Please try again."
+done
  grep -q $USERNAME /etc/passwd >> /dev/null
  if [ $? -eq 0 ] ;then
    echo -e "User $USERNAME exist,Are you sure to proceed with deletion(yes/no)?:- \c"
@@ -28,7 +31,7 @@ user_del () {
  else
    echo "User does not exist"
  fi
-}                                                                                                                                                    
+}
 PS3='Please select your choice: '
 options=("Add User" "Delete User" "Quit")
 select opt in "${options[@]}"
