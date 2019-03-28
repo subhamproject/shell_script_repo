@@ -1,4 +1,7 @@
-#!/bin/bash                                                                                                                                          
+#!/bin/bash   
+### Script to add and delete users from server
+
+## Function to add users
 user_add () {
  echo -e "Please enter username you wish to add?:- \c"
  read USERNAME
@@ -12,7 +15,8 @@ else
   [ $? -eq 0 ] && echo "Password has been set for user $USERNAME"
 fi
 }
-                                                                                                                                                     
+ 
+## Function to delete users
 user_del () {
  echo -e "Please enter the user name you wish to delete?:- \c"
  read USERNAME
@@ -20,12 +24,13 @@ user_del () {
  if [ $? -eq 0 ] ;then
    echo -e "User $USERNAME exist,Are you sure to proceed with deletion(yes/no)?:- \c"
    read RES
-   [ "${RES}" == "Y" -o "${RES}" == "y" -o "${RES}" == "yes" -o "${RES}" == "YES" ] && userdel -r $USERNAME > /dev/null 2>&1 && echo "User $USERNAME deleted successfully"
+   [ "${RES}" == "Y" -o "${RES}" == "y" -o "${RES}" == "yes" -o "${RES}" == "YES" ] && userdel -r $USERNAME > /dev/null 2>&1 && echo "User $USERNAME has been deleted successfully"
    [ "${RES}" == "N" -o "${RES}" == "n" -o "${RES}" == "no" -o "${RES}" == "NO" ] && echo "You have chosen not to delete..Skipping"
  else
    echo "User does not exist"
  fi
-}                                                                                                                                                    
+} 
+
 PS3='Please select your choice: '
 options=("Add User" "Delete User" "Quit")
 select opt in "${options[@]}"
