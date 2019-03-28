@@ -1,10 +1,10 @@
-#!/bin/bash   
-### Script to add and delete users from server
-
-## Function to add users
+#!/bin/bash                                                                                                                                          
 user_add () {
+ while [ -z "${USERNAME}" ];do
  echo -e "Please enter username you wish to add?:- \c"
- read USERNAME
+ read  USERNAME
+ [ -z "${USERNAME}" ] && echo "Username Cannot be empty,Please try again."
+done
  grep -q $USERNAME /etc/passwd >> /dev/null
  if [ $? -eq 0 ];then
   echo "User $USERNAME already exist"
@@ -15,8 +15,7 @@ else
   [ $? -eq 0 ] && echo "Password has been set for user $USERNAME"
 fi
 }
- 
-## Function to delete users
+                                                                                                                                                     
 user_del () {
  echo -e "Please enter the user name you wish to delete?:- \c"
  read USERNAME
@@ -29,8 +28,7 @@ user_del () {
  else
    echo "User does not exist"
  fi
-} 
-
+}                                                                                                                                                    
 PS3='Please select your choice: '
 options=("Add User" "Delete User" "Quit")
 select opt in "${options[@]}"
