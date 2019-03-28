@@ -10,9 +10,9 @@ done
   echo "User $USERNAME already exist"
 else
   useradd $USERNAME  && echo "User $USERNAME has been created" && echo -e "Please enter the password to set?:- \c"
-  read PASSWORD
+  read -s PASSWORD
   echo "$USERNAME:$PASSWORD" |chpasswd  > /dev/null
-  [ $? -eq 0 ] && echo "Password has been set for user $USERNAME"
+  [ $? -eq 0 ] && echo -e "\nPassword has been set for user $USERNAME"
 fi
 unset USERNAME
 }
