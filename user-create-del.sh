@@ -6,7 +6,7 @@ check () {
  while [ -z "${USERNAME}" ];do
  echo -e "Please enter the user name: \c"
  read USERNAME
- [ -z "${USERNAME}" ] && echo "Username Cannot be empty,Please try again."
+ [ -z "${USERNAME}" ] && echo "Username cannot be empty,Please try again."
  done
 }
 
@@ -15,12 +15,16 @@ user_add () {
  unset USERNAME
  check
  if [ -n "$(compgen  -u|grep $USERNAME)" ];then
-   echo "User $USERNAME already exist"
+   echo "User \"$USERNAME\" already exist"
  else
-   useradd $USERNAME  && echo "User $USERNAME has been created" && echo -e "Please enter the password to set: \c"
+   useradd $USERNAME  && echo "User \"$USERNAME\" has been created"
+   while [ -z "${PASSWORD}" ];do
+   echo -e "Please enter the password to set: \c"
    read -s PASSWORD
+   [ -z "${PASSWORD}" ] && echo -e "\nPassword cannot be empty,Please try again."
+   done
    echo "$USERNAME:$PASSWORD" |chpasswd  > /dev/null
-   [ $? -eq 0 ] && echo -e "\nPassword has been set for user $USERNAME"
+   [ $? -eq 0 ] && echo -e "\nPassword has been set for user \"$USERNAME\""
  fi
 unset USERNAME
 unset PASSWORD
@@ -31,10 +35,10 @@ user_del () {
  unset USERNAME
  check
  if [ -n "$(compgen  -u|grep $USERNAME)" ] ;then
-   echo -e "User $USERNAME exist,Are you sure to proceed with deletion(yes/no): \c"
+   echo -e "User \"$USERNAME\" exist,Are you sure to proceed with deletion(yes/no): \c"
    read RES
-   [ "${RES}" == "Y" -o "${RES}" == "y" -o "${RES}" == "yes" -o "${RES}" == "YES" ] && userdel -r $USERNAME > /dev/null 2>&1 && echo "User $USERNAME has been deleted successfully"
-   [ "${RES}" == "N" -o "${RES}" == "n" -o "${RES}" == "no" -o "${RES}" == "NO" ] && echo "You have chosen not to delete $USERNAME..Skipping!"
+   [ "${RES}" == "Y" -o "${RES}" == "y" -o "${RES}" == "yes" -o "${RES}" == "YES" ] && userdel -r $USERNAME > /dev/null 2>&1 && echo "User \"$USERNAME\" has been deleted successfully"
+   [ "${RES}" == "N" -o "${RES}" == "n" -o "${RES}" == "no" -o "${RES}" == "NO" ] && echo "You have chosen not to delete \"$USERNAME\"..Skipping!"
  else
    echo "User does not exist"
  fi
@@ -51,11 +55,11 @@ lock_unlock_account () {
    echo -e "Are you sure to proceed with (lock/unlock) user account(yes/no): \c"
    read RES
    [ "${RES}" == "Y" -o "${RES}" == "y" -o "${RES}" == "yes" -o "${RES}" == "YES" ]  && passwd -$VAL $USERNAME > /dev/null 2>&1
-   [ -n "$(uname -a|grep -i linux)" -a -n "$(passwd -S $USERNAME|grep locked)" -a "$VAL" == "l" ] && echo "Account $USERNAME has been locked"
-   [ -n "$(uname -a|grep -i linux)" -a -n "$(passwd -S $USERNAME|grep set)" -a "$VAL" == "u" ] && echo "Account $USEERNAME has been unlocked"
-   [ -n "$(uname -a|grep -i ubuntu)" -a "$(passwd -S $USERNAME|cut -d' ' -f2)" == "L" -a "$VAL" == "l" ] && echo "Account $USERNAME has been locked"
-   [ -n "$(uname -a|grep -i ubuntu)" -a "$(passwd -S $USERNAME|cut -d' ' -f2)" == "P" -a "$VAL" == "u" ] && echo "Account $USEERNAME has been unlocked"
-   [ "${RES}" == "N" -o "${RES}" == "n" -o "${RES}" == "no" -o "${RES}" == "NO" ] && echo "You have chosen not to (lock/unlock) $USERNAME..Skipping!"
+   [ -n "$(uname -a|grep -i linux)" -a -n "$(passwd -S $USERNAME|grep locked)" -a "$VAL" == "l" ] && echo "Account \"$USERNAME\" has been locked"
+   [ -n "$(uname -a|grep -i linux)" -a -n "$(passwd -S $USERNAME|grep set)" -a "$VAL" == "u" ] && echo "Account \"$USERNAME\" has been unlocked"
+   [ -n "$(uname -a|grep -i ubuntu)" -a "$(passwd -S $USERNAME|cut -d' ' -f2)" == "L" -a "$VAL" == "l" ] && echo "Account \"$USERNAME\" has been locked"
+   [ -n "$(uname -a|grep -i ubuntu)" -a "$(passwd -S $USERNAME|cut -d' ' -f2)" == "P" -a "$VAL" == "u" ] && echo "Account \"$USERNAME\" has been unlocked"
+   [ "${RES}" == "N" -o "${RES}" == "n" -o "${RES}" == "no" -o "${RES}" == "NO" ] && echo "You have chosen not to (lock/unlock) \"$USERNAME\"..Skipping!"
 else
  echo "User does not exist"
 fi
@@ -68,10 +72,21 @@ reset_pass () {
  unset USERNAME
  check
   if [ -n "$(compgen  -u|grep $USERNAME)" ];then
-   echo -e "User $USERNAME exist,Are you sure you want reset password(yes/no): \c"
+   echo -e "User \"$USERNAME\" exist,Are you sure you want reset password(yes/no): \c"
    read RES
-   [ "${RES}" == "Y" -o "${RES}" == "y" -o "${RES}" == "yes" -o "${RES}" == "YES" ] && echo -e "Please enter the password to set: \c" && read -s PASSWORD && echo "$USERNAME:$PASSWORD" |chpasswd  > /dev/null && echo -e "\nPassword has been reset for user $USERNAME"
-  [ "${RES}" == "N" -o "${RES}" == "n" -o "${RES}" == "no" -o "${RES}" == "NO" ] && echo "Not resetting password"
+   case $RES in
+     Y|YES|y|yes)
+   while [ -z "${PASSWORD}" ];do
+   echo -e "Please enter the password to set: \c"
+   read -s PASSWORD
+   [ -z "${PASSWORD}" ] && echo -e "\nPassword cannot be empty,Please try again."
+   done
+   echo "$USERNAME:$PASSWORD" |chpasswd  > /dev/null && echo -e "\nPassword has been reset for user \"$USERNAME\""
+    ;;
+   N|NO|no|n)
+     echo "Not resetting password"
+    ;;
+esac
 else
 echo "User does not exist"
 fi
@@ -80,9 +95,62 @@ unset RES
 unset PASSWORD
 }
 
+## Function to add user to secondary group
+add_to_group () {
+unset USERNAME
+check
+  echo -e "Please choose group you want user to add: \c"
+  echo " "
+  choices=("qa" "dev" "prodsupport" "data" "devops" "Quit")
+select choice in "${choices[@]}"
+do
+  case $choice in
+   "qa")
+    usermod -aG $choice $USERNAME
+    [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added in \"$choice\" group."
+    ;;
+  "dev")
+   usermod -aG $choice $USERNAME
+   [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added in \"$choice\" group."
+     ;;
+  "prodsupport")
+   usermod -aG $choice $USERNAME
+   [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added in \"$choice\" group."
+    ;;
+ "data")
+  usermod -aG $choice $USERNAME
+  [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added in \"$choice\" group."
+   ;;
+ "devops")
+  usermod -aG $choice $USERNAME
+  [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added in \"$choice\" group."
+  ;;
+ "Quit")
+  break ;
+    ;;
+ *) echo "invalid option $REPLY";;
+esac
+ break
+ done
+unset USERNAME
+}
+
+## Function to create new group
+create_group () {
+while [ -z "${GROUP}" ];do
+  echo -e "Please enter group name you wish to create: \c"
+  read GROUP
+  [ -z "${GROUP}" ] && echo "Groupname Cannot be empty,Please try again."
+  done
+  groupadd $GROUP
+[ $? -eq 0 ] && echo "Group \"$GROUP\" has been created"
+unset GROUP
+}
+
+
 ## Main execution of all function
 PS3='Please select your choice: '
-options=("Add User" "Delete User" "Lock User" "Unlock User" "Reset Password" "Quit")
+options=("Add User" "Delete User" "Lock User" "Unlock User" "Reset Password" "Add User To Group" "Create Group" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -100,6 +168,12 @@ do
             ;;
         "Reset Password")
             reset_pass
+            ;;
+       "Add User To Group")
+           add_to_group
+            ;;
+       "Create Group")
+           create_group
             ;;
         "Quit")
             break
