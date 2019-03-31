@@ -14,7 +14,7 @@ check () {
 user_add () {
  unset USERNAME
  check
- if [ -n "$(compgen  -u|grep $USERNAME)" ];then
+ if [ -n "$(compgen  -u|grep -w $USERNAME)" ];then
    echo "User \"$USERNAME\" already exist"
  else
    useradd $USERNAME  && echo "User \"$USERNAME\" has been created"
@@ -34,7 +34,7 @@ unset PASSWORD
 user_del () {
  unset USERNAME
  check
- if [ -n "$(compgen  -u|grep $USERNAME)" ] ;then
+ if [ -n "$(compgen  -u|grep -w $USERNAME)" ] ;then
    echo -e "User \"$USERNAME\" exist,Are you sure to proceed with deletion(yes/no): \c"
    read RES
    [ "${RES}" == "Y" -o "${RES}" == "y" -o "${RES}" == "yes" -o "${RES}" == "YES" ] && userdel -r $USERNAME > /dev/null 2>&1 && echo "User \"$USERNAME\" has been deleted successfully"
@@ -51,8 +51,8 @@ lock_unlock_account () {
  VAL=$1
  unset USERNAME
  check
-  if [ -n "$(compgen  -u|grep $USERNAME)" ];then
-   echo -e "Are you sure to proceed with (lock/unlock) user account(yes/no): \c"
+  if [ -n "$(compgen  -u|grep -w $USERNAME)" ];then
+   echo -e "User  \"$USERNAME\" exist,Are you sure to proceed with (lock/unlock) user account(yes/no): \c"
    read RES
    [ "${RES}" == "Y" -o "${RES}" == "y" -o "${RES}" == "yes" -o "${RES}" == "YES" ]  && passwd -$VAL $USERNAME > /dev/null 2>&1
    [ -n "$(uname -a|grep -i linux)" -a -n "$(passwd -S $USERNAME|grep locked)" -a "$VAL" == "l" ] && echo "Account \"$USERNAME\" has been locked"
@@ -71,7 +71,7 @@ unset RES
 reset_pass () {
  unset USERNAME
  check
-  if [ -n "$(compgen  -u|grep $USERNAME)" ];then
+  if [ -n "$(compgen  -u|grep -w $USERNAME)" ];then
    echo -e "User \"$USERNAME\" exist,Are you sure you want reset password(yes/no): \c"
    read RES
    case $RES in
@@ -107,23 +107,23 @@ do
   case $choice in
    "qa")
     usermod -aG $choice $USERNAME
-    [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added in \"$choice\" group."
+    [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added to \"$choice\" group."
     ;;
   "dev")
    usermod -aG $choice $USERNAME
-   [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added in \"$choice\" group."
+   [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added to \"$choice\" group."
      ;;
   "prodsupport")
    usermod -aG $choice $USERNAME
-   [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added in \"$choice\" group."
+   [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added to \"$choice\" group."
     ;;
  "data")
   usermod -aG $choice $USERNAME
-  [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added in \"$choice\" group."
+  [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added to \"$choice\" group."
    ;;
  "devops")
   usermod -aG $choice $USERNAME
-  [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added in \"$choice\" group."
+  [ $? -eq 0 ] && echo "User \"$USERNAME\" has been added to \"$choice\" group."
   ;;
  "Quit")
   break ;
