@@ -1,5 +1,5 @@
 #!/bin/bash
-##### Script to create ,delete, lock ,unlock and reset password for user!
+##### Script to create ,delete, lock ,unlock and reset password for user,adding user to secondary group!
 
 ## Generic function for all
 check () {
@@ -37,8 +37,14 @@ user_del () {
  if [ -n "$(compgen  -u|grep -w $USERNAME)" ] ;then
    echo -e "User \"$USERNAME\" exist,Are you sure to proceed with deletion(yes/no): \c"
    read RES
-   [ "${RES}" == "Y" -o "${RES}" == "y" -o "${RES}" == "yes" -o "${RES}" == "YES" ] && userdel -r $USERNAME > /dev/null 2>&1 && echo "User \"$USERNAME\" has been deleted successfully"
-   [ "${RES}" == "N" -o "${RES}" == "n" -o "${RES}" == "no" -o "${RES}" == "NO" ] && echo "You have chosen not to delete \"$USERNAME\"..Skipping!"
+   case $RES in
+     Y|YES|y|yes)
+     userdel -r $USERNAME > /dev/null 2>&1 && echo "User \"$USERNAME\" has been deleted successfully"
+    ;;
+    N|NO|no|n)
+     echo "You have chosen not to delete \"$USERNAME\"..Skipping!"
+  ;;
+  esac
  else
    echo "User does not exist"
  fi
@@ -54,12 +60,18 @@ lock_unlock_account () {
   if [ -n "$(compgen  -u|grep -w $USERNAME)" ];then
    echo -e "User  \"$USERNAME\" exist,Are you sure to proceed with (lock/unlock) user account(yes/no): \c"
    read RES
-   [ "${RES}" == "Y" -o "${RES}" == "y" -o "${RES}" == "yes" -o "${RES}" == "YES" ]  && passwd -$VAL $USERNAME > /dev/null 2>&1
-   [ -n "$(uname -a|grep -i linux)" -a -n "$(passwd -S $USERNAME|grep locked)" -a "$VAL" == "l" ] && echo "Account \"$USERNAME\" has been locked"
-   [ -n "$(uname -a|grep -i linux)" -a -n "$(passwd -S $USERNAME|grep set)" -a "$VAL" == "u" ] && echo "Account \"$USERNAME\" has been unlocked"
-   [ -n "$(uname -a|grep -i ubuntu)" -a "$(passwd -S $USERNAME|cut -d' ' -f2)" == "L" -a "$VAL" == "l" ] && echo "Account \"$USERNAME\" has been locked"
-   [ -n "$(uname -a|grep -i ubuntu)" -a "$(passwd -S $USERNAME|cut -d' ' -f2)" == "P" -a "$VAL" == "u" ] && echo "Account \"$USERNAME\" has been unlocked"
-   [ "${RES}" == "N" -o "${RES}" == "n" -o "${RES}" == "no" -o "${RES}" == "NO" ] && echo "You have chosen not to (lock/unlock) \"$USERNAME\"..Skipping!"
+   case $RES in
+     Y|YES|y|yes)
+     passwd -$VAL $USERNAME > /dev/null 2>&1
+     [ -n "$(uname -a|grep -i linux)" -a -n "$(passwd -S $USERNAME|grep locked)" -a "$VAL" == "l" ] && echo "Account \"$USERNAME\" has been locked"
+     [ -n "$(uname -a|grep -i linux)" -a -n "$(passwd -S $USERNAME|grep set)" -a "$VAL" == "u" ] && echo "Account \"$USERNAME\" has been unlocked"
+     [ -n "$(uname -a|grep -i ubuntu)" -a "$(passwd -S $USERNAME|cut -d' ' -f2)" == "L" -a "$VAL" == "l" ] && echo "Account \"$USERNAME\" has been locked"
+     [ -n "$(uname -a|grep -i ubuntu)" -a "$(passwd -S $USERNAME|cut -d' ' -f2)" == "P" -a "$VAL" == "u" ] && echo "Account \"$USERNAME\" has been unlocked"
+     ;;
+     N|NO|no|n)
+      echo "You have chosen not to (lock/unlock) \"$USERNAME\"..Skipping!"
+   ;;
+ esac
 else
  echo "User does not exist"
 fi
@@ -129,7 +141,7 @@ do
   break ;
     ;;
  *) echo "invalid option $REPLY";;
-esac
+ esac
  break
  done
 unset USERNAME
@@ -143,7 +155,7 @@ while [ -z "${GROUP}" ];do
   [ -z "${GROUP}" ] && echo "Groupname Cannot be empty,Please try again."
   done
   groupadd $GROUP
-[ $? -eq 0 ] && echo "Group \"$GROUP\" has been created"
+ [ $? -eq 0 ] && echo "Group \"$GROUP\" has been created"
 unset GROUP
 }
 
