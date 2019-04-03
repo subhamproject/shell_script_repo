@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://www.ghacks.net/2010/02/10/migrate-users-from-one-linux-machine-to-another/
 
 sourceServer=172.16.1.55
 
