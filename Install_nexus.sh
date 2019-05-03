@@ -11,3 +11,25 @@ sed -i 's|#run_as_user=""|run_as_user="nexus"|' ./nexus/bin/nexus.rc && mkdir -p
 
 sed -i 's|^-Dkaraf.data=.*|-Dkaraf.data=/nexus/nexus-data|; s|^-Djava.io.tmpdir=.*|-Djava.io.tmpdir=data/tmp|; s|^-XX:LogFile=.*|-XX:LogFile=/nexus/nexus-data/log/jvm.log|' ./nexus/bin/nexus.vmoptions \
 && ln -s /nexus/nexus/bin/nexus /etc/init.d/nexus && /etc/init.d/nexus start
+
+
+
+
+
+
+
+================================================================================================================================
+
+#!/bin/bash
+
+[ ! -d /nexus ] && mkdir -p /nexus
+cd /nexus && wget wget http://download.sonatype.com/nexus/3/latest-unix.tar.gz
+tar xvf latest-unix.tar.gz &&  mv nexus-3.* nexus && rm -rf sonatype-work \
+&& useradd  -c "Nexus Artifact Account"  nexus \
+&& mkdir -p /nexus-data && chown -R nexus:nexus /nexus
+sed -i 's|#run_as_user=""|run_as_user="nexus"|' ./nexus/bin/nexus.rc \
+&& chown nexus:nexus /nexus-data
+sed -i 's|^-Dkaraf.data=.*|-Dkaraf.data=/nexus-data|; s|^-Djava.io.tmpdir=.*|-Djava.io.tmpdir=data/tmp|; s|^-XX:LogFile=.*|-XX:LogFile=/nexus-data/log/jvm.log|' ./nexus/bin/nexus.vmoptions \
+&& ln -s /nexus/nexus/bin/nexus /etc/init.d/nexus
+chkconfig nexus on
+service nexus start
