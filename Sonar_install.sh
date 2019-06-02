@@ -2,7 +2,7 @@
 
 DIR="/sonarqube"
 
-function install_sonar () 
+function install_sonar() 
 {
 yum remove java-1.7.0-openjdk -y
 yum install java-1.8.0 -y
@@ -12,7 +12,7 @@ useradd -c "Sonarqube Default Account" -s /bin/bash sonar && chown -R sonar:sona
 sed -i 's|#sonar.jdbc.username=.*|sonar.jdbc.username=sonar|; s|#sonar.jdbc.password=.*|sonar.jdbc.password=sonar|; s|#sonar.jdbc.url=jdbc:postgresql.*|sonar.jdbc.url=jdbc:postgresql://localhost/sonar|' $DIR/sonar/conf/sonar.properties
 }
 
-function install_postgres ()
+function install_postgres()
 {
 yum install postgresql96-server postgresql96-contrib -y && mkdir -p /postgres && chown -R postgres:postgres /postgres && su - postgres bash -c 'initdb /postgres' && \
 su - postgres bash -c 'pg_ctl -D /postgres -l logfile start' && echo "postgres" | passwd --stdin postgres && sleep 5
@@ -25,7 +25,7 @@ CREATE DATABASE sonar OWNER sonar;
 EOF
 }
 
-funtion start_sonar ()
+function start_sonar()
 {
 sleep 5
 chown -R sonar:sonar /sonarqube/ && \
