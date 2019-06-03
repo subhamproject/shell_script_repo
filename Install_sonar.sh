@@ -26,7 +26,7 @@ EOF
 cat <<! >> /usr/bin/postgresql
 #!/bin/bash
 TYPE=\$1
-case $TYPE in
+case \$TYPE in
   status)
   su - postgres bash -c 'pg_ctl -D /postgres -l logfile status'
   ;;
