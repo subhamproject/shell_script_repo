@@ -23,7 +23,7 @@ ALTER USER sonar WITH ENCRYPTED password 'sonar';
 CREATE DATABASE sonar OWNER sonar;
 \q
 EOF
-cat <<! >> temp
+cat <<! >> /usr/bin/postgresql
 #!/bin/bash
 TYPE=\$1
 case $TYPE in
