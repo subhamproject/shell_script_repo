@@ -25,6 +25,8 @@ CREATE DATABASE sonar OWNER sonar;
 EOF
 cat <<! >> /usr/bin/postgresql
 #!/bin/bash
+# chkconfig: 345 20 80
+# description: postgres
 TYPE=\$1
 case \$TYPE in
   status)
