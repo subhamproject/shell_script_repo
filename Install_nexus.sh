@@ -4,6 +4,7 @@
 [ ! -d /nexus ] && mkdir -p /nexus
 
 cd /nexus && wget https://sonatype-download.global.ssl.fastly.net/repository/repositoryManager/3/nexus-3.16.1-02-unix.tar.gz
+https://sonatype-download.global.ssl.fastly.net/repository/repositoryManager/3/nexus-3.17.0-01-unix.tar.gz
 
 tar xvf latest-unix.tar.gz &&  mv nexus-3.* nexus && rm -rf sonatype-work && useradd  -c "Nexus Artifact Account"  nexus \
 && chown -R nexus:nexus /nexus
@@ -27,6 +28,7 @@ sed -i 's|^-Dkaraf.data=.*|-Dkaraf.data=/nexus/nexus-data|; s|^-Djava.io.tmpdir=
 
 [ ! -d /nexus ] && mkdir -p /nexus
 cd /nexus && wget wget http://download.sonatype.com/nexus/3/latest-unix.tar.gz
+https://sonatype-download.global.ssl.fastly.net/repository/repositoryManager/3/nexus-3.17.0-01-unix.tar.gz
 tar xvf latest-unix.tar.gz &&  mv nexus-3.* nexus && rm -rf sonatype-work \
 && useradd  -c "Nexus Artifact Account"  nexus \
 && mkdir -p /nexus-data && chown -R nexus:nexus /nexus
