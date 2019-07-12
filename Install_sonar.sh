@@ -14,7 +14,10 @@ sed -i 's|#sonar.jdbc.username=.*|sonar.jdbc.username=sonar|; s|#sonar.jdbc.pass
 
 function install_postgres()
 {
-yum install postgresql96-server postgresql96-contrib -y && mkdir -p /postgres && chown -R postgres:postgres /postgres && su - postgres bash -c 'initdb /postgres' && \
+[ $(cat /etc/os-release |grep -m1 VERSION|cut -d'=' -f2|sed 's|"||g') -ne '2' ] && \
+yum install postgresql96-server postgresql96-contrib -y || \
+amazon-linux-extras install postgresql10 vim epel -y &&  yum update -y && yum install -y postgresql-server postgresql-devel
+mkdir -p /postgres && chown -R postgres:postgres /postgres && su - postgres bash -c 'initdb /postgres' && \
 su - postgres bash -c 'pg_ctl -D /postgres -l logfile start' && echo "postgres" | passwd --stdin postgres && sleep 5
 su - postgres << EOF
 createuser sonar
