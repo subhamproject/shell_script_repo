@@ -49,7 +49,7 @@ chmod a+x /usr/bin/postgresql && ln -s /usr/bin/postgresql /etc/init.d/postgres
 function start_sonar()
 {
 sleep 5
-chown -R sonar:sonar /sonarqube/ && \
+chown -R sonar:sonar $DIR && \
 ln -s $DIR/sonar/bin/linux-x86-64/sonar.sh /etc/init.d/sonar && sed -i 's|#RUN_AS_USER=.*|RUN_AS_USER=sonar|; s|^WRAPPER_CMD=.*|WRAPPER_CMD="/sonarqube/sonar/bin/linux-x86-64/wrapper"|; s|^WRAPPER_CONF=.*|WRAPPER_CONF="/sonarqube/sonar/conf/wrapper.conf"|; s|^PIDDIR=.*|PIDDIR="/sonarqube/sonar/"|' /etc/init.d/sonar && \
 chkconfig sonar on
 service sonar start
