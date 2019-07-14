@@ -1,4 +1,4 @@
-# Generic script to intall sonarqube with postgress in any flavour of linux
+# Generic script to install sonarqube with postgress in any flavour of linux
 #!/bin/bash
 
 DIR="/sonarqube"
