@@ -1,0 +1,13 @@
+https://www.cyberciti.biz/faq/explain-brace-expansion-in-cp-mv-bash-shell-commands/
+
+https://www.devdungeon.com/content/bash-brace-expansion-tutorial
+
+https://www.cyberciti.biz/tips/bash-shell-parameter-substitution-2.html
+
+https://sanctum.geek.nz/arabesque/bash-shell-expansion/
+
+## update all CentOS/ RHEL 7.x boxes named ##
+for server in aws-{prod,backup-prod}-{db,www}-0{1..4}
+do
+   ssh -t vivek@${server} sudo -- sh -c 'yum update'
+done
