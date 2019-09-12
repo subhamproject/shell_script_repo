@@ -1,0 +1,14 @@
+http://www.theunixschool.com/2012/08/getopts-how-to-pass-command-line-options-shell-script-Linux.html
+
+https://www.lifewire.com/pass-arguments-to-bash-script-2200571
+
+while getopts u:d:p:f: option
+do
+case "${option}"
+in
+u) USER=${OPTARG};;
+d) DATE=${OPTARG};;
+p) PRODUCT=${OPTARG};;
+f) FORMAT=${OPTARG};;
+esac
+done
