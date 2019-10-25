@@ -1,0 +1,27 @@
+https://riptutorial.com/bash/example/6886/associative-arrays
+
+
+for key in "${!aa[@]}"; do
+    echo "Key:   ${key}"
+    echo "Value: ${array[$key]}"
+done
+
+
+https://clubmate.fi/associative-arrays-in-bash/
+
+
+#!/bin/bash
+declare -A names
+names=(
+    [John]=Doe
+    [Jane]=Doe
+    [Jim]=Smith
+    [Angela]=Merkel
+)
+
+for i in "${!names[@]}"
+do
+    first_name=$i
+    last_name=${names[$i]}
+    echo "$first_name : $last_name"
+done
