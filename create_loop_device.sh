@@ -4,8 +4,11 @@ read -p "Please enter the path you wish to create file in? : " dir_name
 read -p "Please enter the file size(only numeric eg:100) you wish to create in \"${dir_name}\" path? : " file_size
 read -p "Please enter the file name you wish to create \"${dir_name}\" path? : " file_name
 read -p "Please confirm if you wish to create file in (GB) or in (MB),Please choose one? : " file_type
-file_type=$(echo ${file_type}|fold -w 1|head -1)
+file_type=$(echo ${file_type^^}|fold -w 1|head -1)
 [ -z "${file_size}" ] && echo "You haven't provided file size you wish to create" && exit 1
+[ -z "${dir_name}" ] && echo "You haven't provided dir name" && exit 1
+[ -z "${file_name}" ] && echo "You haven't provided file name" && exit 1
+[ -z "${file_type}" ] && echo "You haven't provided file type in MB or in GB" && exit 1
 [ -f ${dir_name}/${file_name} ] && rm -rf ${dir_name}/${file_name}
 [ -n "${file_size}" ] && fallocate -l ${file_size}${file_type} ${dir_name}/${file_name} || echo "Please provide all the inputs"
 
