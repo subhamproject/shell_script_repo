@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://www.cyberciti.biz/faq/linux-unix-shell-programming-converting-lowercase-uppercase/
+
 read -p "Please enter the path you wish to create file in? : " dir_name
 read -p "Please enter the file size(only numeric eg:100) you wish to create in \"${dir_name}\" path? : " file_size
 read -p "Please enter the file name you wish to create \"${dir_name}\" path? : " file_name
