@@ -1,0 +1,3 @@
+https://src-bin.com/en/q/623c9
+
+https://www.uxora.com/unix/shell-script/22-handle-long-options-with-getopts
