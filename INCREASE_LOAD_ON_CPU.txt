@@ -1,0 +1,8 @@
+To put load on the cpu without any third party tools:
+yes>/dev/null
+
+
+
+https://www.cyberciti.biz/faq/stress-test-linux-unix-server-with-stress-ng/
+
+https://www.tecmint.com/linux-cpu-load-stress-test-with-stress-ng-tool/
