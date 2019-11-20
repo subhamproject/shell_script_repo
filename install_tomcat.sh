@@ -40,6 +40,7 @@ Restart=always
 
 WantedBy=multi-user.target
 !
+}
 
 INSTALL_TOMCAT
 systemctl daemon-reload && \
