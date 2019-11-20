@@ -1,1 +1,4 @@
 https://devhints.io/bash
+
+
+http://redsymbol.net/articles/unofficial-bash-strict-mode/
