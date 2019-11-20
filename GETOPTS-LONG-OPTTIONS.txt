@@ -2,6 +2,11 @@ techpatterns.com/forums/about1138.html
 
 https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/shell-programming/bash-tips/using-getopts-in-bash-shell-script-to-get-long-and-short-command-line-options
 
+https://www.codebyamir.com/blog/parse-command-line-arguments-using-getopt
+
+https://techpatterns.com/forums/about1138.html
+
+https://linuxhint.com/bash_getopts_example/
 
 #!/bin/bash 
 
