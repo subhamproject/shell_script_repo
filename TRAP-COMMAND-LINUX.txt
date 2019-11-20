@@ -5,3 +5,10 @@ http://redsymbol.net/articles/bash-exit-traps/
 http://redsymbol.net/articles/bash-exit-traps/
 
 https://www.learnshell.org/en/Bash_trap_command
+
+
+
+https://www.youtube.com/watch?v=tF0Qau7zcsw
+
+
+https://www.linuxjournal.com/content/bash-trap-command
