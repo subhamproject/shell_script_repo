@@ -1,0 +1,32 @@
+https://linuxhint.com/bash_eval_command/
+
+
+str1="Shell Script"; str2=str1; command="echo"; eval $command ${!str2}
+
+#!/bin/bash
+
+#Declare an array
+declare -A fn
+
+# Read three command line arguments and store into three index of the array
+fn[0]=$1
+fn[1]=$2
+fn[2]=$3
+
+# Store the remove command into a variable
+command="rm"
+
+# for loop will iterate for three times to read three array element
+for index in 0 1 2
+do
+# Check the file exists or not exist
+if [[ -f ${fn[$index]} ]]; then
+# if the file exists then remove the file
+eval $command ${fn[$index]}
+# Inform the user that the file is removed
+echo "${fn[$index]} is deleted."
+Else
+#Inform the user that the file is not exist
+echo "${fn[$index]} not exist."
+fi
+done
