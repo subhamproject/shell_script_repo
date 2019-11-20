@@ -1,0 +1,7 @@
+https://www.shellscript.sh/trap.html
+
+http://redsymbol.net/articles/bash-exit-traps/
+
+http://redsymbol.net/articles/bash-exit-traps/
+
+https://www.learnshell.org/en/Bash_trap_command
