@@ -1,0 +1,3 @@
+https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php
+
+https://linuxize.com/post/bash-check-if-file-exists/
