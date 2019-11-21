@@ -1,0 +1,7 @@
+https://bash.cyberciti.biz/guide/What_is_a_Subshell%3F
+
+https://www.linuxtopia.org/online_books/advanced_bash_scripting_guide/subshells.html
+
+https://www.linuxjournal.com/content/bash-sub-shells --> IMP
+
+https://docstore.mik.ua/orelly/unix3/korn/ch08_06.htm
