@@ -2,3 +2,11 @@ https://devhints.io/bash
 
 
 http://redsymbol.net/articles/unofficial-bash-strict-mode/
+
+
+Expression         Result                                Comments
+${path##/*/}                      long.file.name   ## takes out longest matched substring from the front
+${path#/*/}              cam/book/long.file.name   # takes out shortest matched substring from the front
+$path              /home/cam/book/long.file.name   
+${path%.*}         /home/cam/book/long.file        % takes out shortest matched substring from the rear
+${path%%.*}        /home/cam/book/long             %% takes out longest matched substring from the rear
