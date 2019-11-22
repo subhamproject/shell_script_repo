@@ -12,3 +12,50 @@ https://www.youtube.com/watch?v=tF0Qau7zcsw
 
 
 https://www.linuxjournal.com/content/bash-trap-command
+
+TRAP example
+
+
+#!/bin/bash
+
+FILE="/tmp/file.log"
+
+function delete_file() {
+[ -f ${FILE} ] && rm -rf ${FILE} && echo "${FILE} deleted" || echo "file ${FILE} not present"
+ }
+
+trap delete_file EXIT
+
+grap subham /etc/passwd
+
+exit 1
+
+
+
+==================================================
+
+function egress {
+     rm -f /tmp/output.txt
+     systemctl start smb.service
+     iptables -D INPUT -p tcp -s 10.0.0.222 --dport 32400 -j ACCEPT
+}
+# Call the egress function
+trap egress EXIT
+
+# Script contents
+# Do some stuff
+# Then some more stuff
+# Do stuff to the stuff already done
+# etc...
+
+# When the script is completed or exits for any reason, the 
+# commands in the egress function will be executed.
+Conclusion
+
+===================================================
+
+#!/bin/bash
+trap "iptables -D INPUT -p tcp -s 10.0.0.222 --dport 32400 -j ACCEPT" EXIT
+echo "Opening ports for kiddos 2 hours of TV time"
+iptables -I INPUT -p tcp -s 10.0.0.222 --dport 32400 -j ACCEPT
+sleep 7200
