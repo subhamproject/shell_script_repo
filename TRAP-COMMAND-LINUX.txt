@@ -6,7 +6,7 @@ http://redsymbol.net/articles/bash-exit-traps/
 
 https://www.learnshell.org/en/Bash_trap_command
 
-
+https://www.putorius.net/using-trap-to-exit-bash-scripts-cleanly.html --> IMP
 
 https://www.youtube.com/watch?v=tF0Qau7zcsw
 
