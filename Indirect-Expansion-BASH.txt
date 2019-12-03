@@ -1,5 +1,6 @@
 https://stackoverflow.com/questions/8515411/what-is-indirect-expansion-what-does-var-mean
 
+http://wyattgorman.com/?p=14
 
 There appears to be an exception when the given "indirection" ends in a *, as it does here. In this case, it gives all variable names that start with the part you specified (N here). Bash can do that because it tracks variables and knows which ones exist.
 
