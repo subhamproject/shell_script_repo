@@ -1,3 +1,5 @@
+#The following example, add a user to the Linux system by updating /etc/passwd file and creating home directory at /home for user. It traps various single to avoid errors while creating user accounts. If user pressed CTRL+C or script terminated it will try to rollback changes made to system files. Traps are turned on before the useradd command in shell script, and then turn off the trap after the chpasswd line.
+
 #!/bin/bash
 # setupaccounts.sh: A Shell script to add user to the Linux system.
 # set path to binary files
