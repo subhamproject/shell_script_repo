@@ -1,5 +1,6 @@
 https://devhints.io/bash
 
+http://matt.might.net/articles/bash-by-example/
 
 http://redsymbol.net/articles/unofficial-bash-strict-mode/
 
