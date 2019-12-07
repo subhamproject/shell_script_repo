@@ -1,0 +1,12 @@
+https://bash.cyberciti.biz/guide/Reads_from_the_file_descriptor_(fd) --> IMP
+
+https://stefanonegro.it/2010/04/17/linux-shell-scripting-tutorial-lsst/
+
+
+https://haiderriz.wordpress.com/linux-shell-scripting-tutorial-lsst-v2-0/shell-redirection/
+
+
+https://lists.gnu.org/archive/html/help-bash/2014-02/msg00050.html
+
+
+http://tldp.org/LDP/abs/html/x17974.html
