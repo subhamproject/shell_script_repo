@@ -10,3 +10,5 @@ https://lists.gnu.org/archive/html/help-bash/2014-02/msg00050.html
 
 
 http://tldp.org/LDP/abs/html/x17974.html
+
+https://www.itworld.com/article/2821652/unix-tip--reading-and-writing-with-file-descriptors.html
