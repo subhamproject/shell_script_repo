@@ -17,3 +17,41 @@ while (( "$#" )); do        # While there are arguments still to be shifted...
 done
 echo "Done."
 exit 0
+
+
+#!/bin/bash
+
+while [[ $1 ]];do
+  case $1 in
+    -f | --file)
+       FILE=$2
+       shift
+      ;;
+   -n | --name)
+       NAME=$2
+       shift
+      ;;
+   -p | --password)
+       PASS=$2
+        shift
+     ;;
+  esac
+ shift
+done
+
+for I in $FILE
+do
+NAME=$(echo $I|tr ',' '\n')
+for J in $NAME
+do
+echo $J
+done
+done
+
+
+
+rcxdev@rcxdev:/tmp$ bash  check.sh --file jenkins,subham,mandal,ram
+jenkins
+subham
+mandal
+ram
