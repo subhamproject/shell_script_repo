@@ -29,8 +29,11 @@ function add_user() {
 local NAME=$1
 local user=""
 for user in $NAME;do
-[ -n "$(compgen -u|grep $user)" ] && { echo "$0: The user '$user' already exits."; }
-useradd -m -d /home/$user -s /bin/bash $user|| { echo "$0: User \"$user\" addition failed."; }
+if ! getent passwd $user > /dev/null 2>&1; then
+useradd -m -d /home/$user -s /bin/bash $user || { echo "$0: User \"$user\" addition failed."; }
+else
+echo "The user '$user' already exits."
+fi
 done
 }
 
@@ -38,8 +41,12 @@ function delete_user() {
 local NAME=$1
 local user=""
 for user in $NAME;do
+if getent passwd $user > /dev/null 2>&1; then
 [ -d /home/$user ] && rm -rf /home/$user || true
-[ -n "$(compgen -u|grep $user)" ] && userdel $user || echo "User  \"$user\" does not exist"
+userdel $user
+else
+echo "User  \"$user\" does not exist"
+fi
 done
 }
 
