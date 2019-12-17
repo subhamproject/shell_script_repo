@@ -2,6 +2,8 @@ https://devhints.io/bash
 
 https://zwischenzugs.com/2018/10/12/eleven-bash-tips-you-might-want-to-know/ 
 
+https://tiswww.case.edu/php/chet/bash/bashref.html
+
 
 http://matt.might.net/articles/bash-by-example/
 
