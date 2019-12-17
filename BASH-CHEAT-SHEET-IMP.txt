@@ -1,5 +1,8 @@
 https://devhints.io/bash
 
+https://zwischenzugs.com/2018/10/12/eleven-bash-tips-you-might-want-to-know/ 
+
+
 http://matt.might.net/articles/bash-by-example/
 
 http://redsymbol.net/articles/unofficial-bash-strict-mode/
