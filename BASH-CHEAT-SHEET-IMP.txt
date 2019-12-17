@@ -4,6 +4,7 @@ https://zwischenzugs.com/2018/10/12/eleven-bash-tips-you-might-want-to-know/
 
 https://tiswww.case.edu/php/chet/bash/bashref.html
 
+https://developpaper.com/examples-of-the-meaning-and-use-of-set-and-shopt-command-options-in-the-shell/
 
 http://matt.might.net/articles/bash-by-example/
 
