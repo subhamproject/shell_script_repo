@@ -59,3 +59,20 @@ trap "iptables -D INPUT -p tcp -s 10.0.0.222 --dport 32400 -j ACCEPT" EXIT
 echo "Opening ports for kiddos 2 hours of TV time"
 iptables -I INPUT -p tcp -s 10.0.0.222 --dport 32400 -j ACCEPT
 sleep 7200
+
+
+=================================================================
+
+
+function cleanup() {
+    rm -rf "${BUILD_DIR}"
+    rm -f "${LOCK_FILE}"
+    # get rid of /tmp detritus, leaving anything accessed 2 days ago+
+    find "${BUILD_DIR_BASE}"/* -type d -atime +1 | rm -rf
+    echo "cleanup done"                                                                                                                          
+} 
+trap cleanup TERM INT QUIT
+
+
+
+
