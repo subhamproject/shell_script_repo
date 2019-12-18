@@ -5,6 +5,12 @@ http://www.cs.umsl.edu/~sanjiv/classes/cs2750/lectures/kshfns.pdf
 https://www.geeksforgeeks.org/array-basics-shell-scripting-set-1/
 
 
+https://riptutorial.com/bash/example/19457/read-lines-of-a-file-into-an-array
+https://peniwize.wordpress.com/2011/04/09/how-to-read-all-lines-of-a-file-into-a-bash-array/
+https://kaijento.github.io/2017/03/19/bash-read-file-into-array/
+https://canvas.bham.ac.uk/courses/17217/pages/read-file-into-bash-array
+
+
 #!/bin/bash
 declare -A array=()
 IFS=':'
