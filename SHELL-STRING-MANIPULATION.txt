@@ -1,0 +1,5 @@
+https://www.learnshell.org/en/Basic_String_Operations
+
+https://landoflinux.com/linux_bash_scripting_substring_tests.html
+
+https://www.cyberciti.biz/faq/how-to-extract-substring-in-bash/
