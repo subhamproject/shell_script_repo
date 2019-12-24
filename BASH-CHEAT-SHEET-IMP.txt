@@ -4,6 +4,8 @@ https://zwischenzugs.com/2018/10/12/eleven-bash-tips-you-might-want-to-know/
 
 https://linuxconfig.org/bash-scripting-tutorial
 
+https://spin.atomicobject.com/2014/02/16/bash-string-maniuplation/
+
 https://tiswww.case.edu/php/chet/bash/bashref.html
 
 https://developpaper.com/examples-of-the-meaning-and-use-of-set-and-shopt-command-options-in-the-shell/
@@ -19,3 +21,14 @@ ${path#/*/}              cam/book/long.file.name   # takes out shortest matched 
 $path              /home/cam/book/long.file.name   
 ${path%.*}         /home/cam/book/long.file        % takes out shortest matched substring from the rear
 ${path%%.*}        /home/cam/book/long             %% takes out longest matched substring from the rear
+
+
+var=/Users/karlin/git/langton_loops/index.html.erb
+echo ${var}         # => /Users/karlin/git/langton_loops/index.html.erb
+echo ${var#*.}      # => html.erb
+echo ${var##*.}     # => erb
+echo ${var%/*.*}    # => /Users/karlin/git/langton_loops
+ 
+file=${var##/*/}    # => index.html.erb
+echo ${file%.*}     # => index.html
+echo ${file%%.*}    # => index
