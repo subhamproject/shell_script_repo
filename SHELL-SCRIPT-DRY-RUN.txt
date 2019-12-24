@@ -1,0 +1,28 @@
+https://stackoverflow.com/questions/50002555/implementing-dry-run-in-a-bash-script
+
+
+
+dryrun() {
+    if [[ ! -t 0 ]]
+    then
+        cat
+    fi
+    printf -v cmd_str '%q ' "$@"; echo "DRYRUN: Not executing $cmd_str" >&2
+}
+Then you can do:
+
+$DRYRUN tar cf - drytestfile | \
+$DRYRUN 7z a -m0=lzma2 -mx=9 -mmt=$nbCores -si drytestfile.tar.7z | \
+$DRYRUN tee -a /tmp/testlog
+For example:
+
+dryrun echo "hello" | \
+dryrun echo "world" | \
+dryrun echo "foo" | \
+dryrun echo "bar"
+Will produce:
+
+DRYRUN: Not executing command echo hello
+DRYRUN: Not executing command echo world
+DRYRUN: Not executing command echo foo
+DRYRUN: Not executing command echo bar
