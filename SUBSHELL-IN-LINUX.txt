@@ -5,3 +5,24 @@ https://www.linuxtopia.org/online_books/advanced_bash_scripting_guide/subshells.
 https://www.linuxjournal.com/content/bash-sub-shells --> IMP
 
 https://docstore.mik.ua/orelly/unix3/korn/ch08_06.htm
+
+
+#!/bin/bash
+# allprofs.sh: Print all user profiles.
+
+# This script written by Heiner Steven, and modified by the document author.
+
+FILE=.bashrc  #  File containing user profile,
+              #+ was ".profile" in original script.
+
+for home in `awk -F: '{print $6}' /etc/passwd`
+do
+  [ -d "$home" ] || continue    # If no home directory, go to next.
+  [ -r "$home" ] || continue    # If not readable, go to next.
+  (cd $home; [ -e $FILE ] && less $FILE)
+done
+
+#  When script terminates, there is no need to 'cd' back to original directory,
+#+ because 'cd $home' takes place in a subshell.
+
+exit 0
