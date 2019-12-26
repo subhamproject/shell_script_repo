@@ -4,6 +4,8 @@ https://zwischenzugs.com/2018/10/12/eleven-bash-tips-you-might-want-to-know/
 
 https://linuxconfig.org/bash-scripting-tutorial
 
+https://www.shellscript.sh/tips/pattern-substitution/
+
 https://spin.atomicobject.com/2014/02/16/bash-string-maniuplation/
 
 https://tiswww.case.edu/php/chet/bash/bashref.html
