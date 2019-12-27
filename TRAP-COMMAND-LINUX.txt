@@ -10,6 +10,7 @@ https://www.putorius.net/using-trap-to-exit-bash-scripts-cleanly.html --> IMP
 
 https://www.youtube.com/watch?v=tF0Qau7zcsw
 
+https://spin.atomicobject.com/2017/08/24/start-stop-bash-background-process/ --> IMP
 
 https://www.linuxjournal.com/content/bash-trap-command
 
