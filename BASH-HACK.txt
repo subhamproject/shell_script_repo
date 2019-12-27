@@ -1,1 +1,3 @@
 https://learnxinyminutes.com/docs/bash/
+
+http://www.softpanorama.org/Scripting/Shellorama/bash_tips_and_tricks.shtml
