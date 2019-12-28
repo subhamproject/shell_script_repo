@@ -7,3 +7,14 @@ https://dzone.com/articles/35-examples-of-regex-patterns-using-sed-and-awk-in
 https://www.linuxjournal.com/content/pattern-matching-bash
 
 https://www.youtube.com/watch?v=sa-TUpSx1JA -->  IMP
+
+
+IMP LINKS BELOW: REGEX CHEATSHEETS
+
+http://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf
+
+https://www.petefreitag.com/cheatsheets/regex/
+
+https://dev.to/catherinecodes/a-regex-cheatsheet-for-all-those-regex-haters-and-lovers--2cj1
+
+https://www.linuxnix.com/regular-expressions-linux-i/
