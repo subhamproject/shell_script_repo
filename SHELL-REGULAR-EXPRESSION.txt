@@ -1,0 +1,7 @@
+https://www.networkworld.com/article/2693361/unix-tip-using-bash-s-regular-expressions.html
+
+https://www.rexegg.com/regex-quickstart.html
+
+https://dzone.com/articles/35-examples-of-regex-patterns-using-sed-and-awk-in
+
+https://www.linuxjournal.com/content/pattern-matching-bash
