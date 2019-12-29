@@ -9,6 +9,8 @@ https://www.linuxjournal.com/content/pattern-matching-bash
 https://www.youtube.com/watch?v=sa-TUpSx1JA -->  IMP
 https://www.youtube.com/watch?v=7DG3kCDx53c
 
+https://www.youtube.com/watch?v=7DG3kCDx53c&list=PLRqwX-V7Uu6YEypLuls7iidwHMdCM6o2w --> IMP VIDEOS --> REGULAR EXPRESSION
+
 
 IMP LINKS BELOW: REGEX CHEATSHEETS
 
