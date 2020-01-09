@@ -1,3 +1,4 @@
+https://raw.githubusercontent.com/hgomez/devops-incubator/master/forge-tricks/batch-install-jenkins-plugins.sh
 #!/bin/bash
 #
 
