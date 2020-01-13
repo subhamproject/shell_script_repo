@@ -1,4 +1,6 @@
-#!/bin/bash    
+#!/bin/bash   
+
+https://stackoverflow.com/questions/51650405/measure-execution-time-of-docker-container
 
 TEMP_FILE="file.txt"
 LIMIT="500"
