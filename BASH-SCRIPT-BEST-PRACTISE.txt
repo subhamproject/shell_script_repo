@@ -1,0 +1,7 @@
+https://kvz.io/bash-best-practices.html
+
+http://www.yoone.eu/articles/2-good-practices-for-writing-shell-scripts.html
+
+https://codeburst.io/13-tips-tricks-for-writing-shell-scripts-with-awesome-ux-19a525ae05ae
+
+https://www.tecmint.com/useful-tips-for-writing-bash-scripts-in-linux/
