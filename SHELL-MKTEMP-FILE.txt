@@ -1,0 +1,3 @@
+https://www.shellscript.sh/tips/mktemp/
+
+https://renenyffenegger.ch/notes/Linux/shell/commands/mktemp
