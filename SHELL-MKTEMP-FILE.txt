@@ -1,3 +1,22 @@
 https://www.shellscript.sh/tips/mktemp/
 
 https://renenyffenegger.ch/notes/Linux/shell/commands/mktemp
+
+
+
+## Create a log file
+logfile=$(mktemp)
+
+## Run your command and have it print into the log file
+## when it's finsihed.
+command1 && echo 1 > $logfile &
+
+## Wait for it. The [ ! -s $logfile ] is true while the file is 
+## empty. The -s means "check that the file is NOT empty" so ! -s
+## means the opposite, check that the file IS empty. So, since
+## the command above will print into the file as soon as it's finished
+## this loop will run as long as  the previous command si runnning.
+while [ ! -s $logfile ]; do sleep 1; done
+
+## continue
+command2
