@@ -2,6 +2,17 @@ https://www.shellscript.sh/tips/mktemp/
 
 https://renenyffenegger.ch/notes/Linux/shell/commands/mktemp
 
+https://www.putorius.net/working-with-temporary-files.html
+
+
+https://code-maven.com/create-temporary-directory-on-linux-using-bash
+
+
+#!/bin/bash
+ trap 'rm -f "$TMPFILE"' EXIT
+ TMPFILE=$(mktemp)|| exit 1
+ echo "Our temp file is $TMPFILE"
+
 
 
 ## Create a log file
