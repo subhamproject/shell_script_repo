@@ -13,7 +13,7 @@ c3=''
 c4=''
 c5=''
 
-[ ! -f ${FILE} ] && { echo "$FILE not found" ; exit 1 ;} || :
+[ ! -f ${FILE} ] && { echo "$FILE file not found!" ; exit 1 ;} || :
 
 for line in $(cat $FILE);do
 LINE1=$(echo $line|awk -F' ' '{print $1}')
