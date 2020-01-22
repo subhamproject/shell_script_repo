@@ -2,6 +2,8 @@ https://www.youtube.com/watch?v=xIfsdW6ripo
 
 https://www.youtube.com/watch?v=93i8txD0H3Q --> IMP
 
+http://fitnr.com/showing-a-bash-spinner.html --> IMP
+
 
 http://www.thegeeky.space/2013/10/how-to-do-progress-indicator-using-bash_1684.html --> VVIMP
 
