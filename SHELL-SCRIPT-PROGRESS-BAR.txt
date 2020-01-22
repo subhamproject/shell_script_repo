@@ -1,0 +1,42 @@
+https://www.youtube.com/watch?v=xIfsdW6ripo
+
+https://www.youtube.com/watch?v=93i8txD0H3Q --> IMP
+
+
+http://www.thegeeky.space/2013/10/how-to-do-progress-indicator-using-bash_1684.html --> VVIMP
+
+https://stackoverflow.com/questions/12498304/using-bash-to-display-a-progress-indicator
+
+
+#!/bin/bash
+
+LIST="1 2 3 4 5 6 7 8 9 10"             #Note that there is a different when we
+INT=1                                          #use (),"",'' .Maybe Ill explain in diff. post
+CNT=0
+
+for NIM in ${LIST}                         #For function  as controlling loop
+do
+
+    len=$(echo ${LIST} | wc -w)             #"wc"command is used print new line
+    echo -en "\b\b\b$(($NIM*100/$len))%"
+    sleep $INT
+
+
+done
+
+=================================================================================================================
+#!/bin/bash
+
+CHA=( "-" "\\" "|" "/" )
+INT=1
+CNT=0
+
+while true                             #While function as controlling loop
+do
+
+    loc=$(($CNT % 4))            #using the modulo expression for arithmetic fn
+    echo -en "\b${CHA[$loc]}"  #check this link for bash arrays info.
+    CNT=$(($CNT + 1))            #Increasing the CouNTer
+    sleep $INT
+
+done
