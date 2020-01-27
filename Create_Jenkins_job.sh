@@ -12,3 +12,27 @@ curl -XPOST 'http://jenkins/createItem?name=FolderName&mode=com.cloudbees.hudson
 
 
 # see http://jenkins/api/
+#https://support.cloudbees.com/hc/en-us/articles/218353308-How-to-update-job-config-files-using-the-REST-API-and-cURL-
+
+
+# Get current config
+curl -X GET http://developer:developer@localhost:8080/job/test/config.xml -o mylocalconfig.xml
+
+# Post updated config
+curl -X POST http://developer:developer@localhost:8080/job/test/config.xml --data-binary "@mymodifiedlocalconfig.xml"
+
+curl "http://localhost:18080/jenkins/job/npm-package-aaa/config.xml" -si --data-binary "$XML" -H "Content-Type: text/xml" 
+
+
+curl -X GET http://anthony:anthony@localhost:8080/jenkins/job/pof/config.xml -o config.xml
+curl -X POST http://anthony:anthony@localhost:8080/jenkins/job/pof/config.xml --data-binary "@config.xml"
+
+
+#Get the current configuration and save it locally
+curl -X GET http://user:password@hudson.server.org/job/myjobname/config.xml -o mylocalconfig.xml
+ 
+#Update the configuration via posting a local configuration file
+curl -X POST http://user:password@hudson.server.org/job/myjobname/config.xml --data-binary "@mymodifiedlocalconfig.xml"
+ 
+#Creating a new job via posting a local configuration file
+curl -X POST "http://user:password@hudson.server.org/createItem?name=newjobname" --data-binary "@newconfig.xml" -H "Content-Type: text/xml"
