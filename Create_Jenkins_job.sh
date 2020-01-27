@@ -15,6 +15,27 @@ curl -XPOST 'http://jenkins/createItem?name=FolderName&mode=com.cloudbees.hudson
 #https://support.cloudbees.com/hc/en-us/articles/218353308-How-to-update-job-config-files-using-the-REST-API-and-cURL-
 
 
+
+
+# check if job exists
+curl -XGET 'http://jenkins/checkJobName?value=yourJobFolderName' --user user.name:YourAPIToken
+
+# with folder plugin
+curl -s -XPOST 'http://jenkins/job/FolderName/createItem?name=yourJobName' --data-binary @config.xml -H "Content-Type:text/xml" --user user.name:YourAPIToken
+
+# without folder plugin
+curl -s -XPOST 'http://jenkins/createItem?name=yourJobName' --data-binary @config.xml -H "Content-Type:text/xml" --user user.name:YourAPIToken
+
+# create folder
+curl -XPOST 'http://jenkins/createItem?name=FolderName&mode=com.cloudbees.hudson.plugins.folder.Folder&from=&json=%7B%22name%22%3A%22FolderName%22%2C%22mode%22%3A%22com.cloudbees.hudson.plugins.folder.Folder%22%2C%22from%22%3A%22%22%2C%22Submit%22%3A%22OK%22%7D&Submit=OK' --user 'user.name:YourAPIToken' -H "Content-Type:application/x-www-form-urlencoded"
+
+# remove folder / job
+curl -XPOST 'http://jenkins/job/FolderName/doDelete' --user 'user.name:YourAPIToken'
+
+# trigger remote job
+curl 'http://jenkins/job/yourJobName/build?delay=0sec' --user 'user.name:YourAPIToken'
+
+
 # Get current config
 curl -X GET http://developer:developer@localhost:8080/job/test/config.xml -o mylocalconfig.xml
 
