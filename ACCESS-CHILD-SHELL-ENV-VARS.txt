@@ -1,0 +1,1 @@
+http://www.theunixschool.com/2010/07/how-to-access-child-shell-env-variable.html
