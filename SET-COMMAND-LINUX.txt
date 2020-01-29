@@ -1,0 +1,22 @@
+https://www.youtube.com/watch?v=giWaEDEdz7o
+
+
+https://unix.stackexchange.com/questions/308260/what-does-set-do-in-this-dockerfile-entrypoint
+
+
+#!/bin/bash
+
+NAMES="rama krisna hare rama"
+
+set -- $NAMES
+
+for I in "$@"
+do
+echo $I
+done
+
+
+root@lxcserver:~# set -- $(ip a|grep docker|grep inet)
+root@lxcserver:~# echo $4
+172.17.255.255
+root@lxcserver:~#
