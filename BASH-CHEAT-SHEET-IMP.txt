@@ -1,5 +1,7 @@
 https://devhints.io/bash
 
+http://ngelinux.com/brief-explanation-string-and-array-slicing-in-bash-shell-linux/ --> BASH string slicinig
+
 https://zwischenzugs.com/2018/10/12/eleven-bash-tips-you-might-want-to-know/ 
 
 https://linuxconfig.org/bash-scripting-tutorial
