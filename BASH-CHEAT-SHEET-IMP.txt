@@ -4,6 +4,8 @@ https://yeonghoey.com/unix-like/expansions/
 
 https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
 
+https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_73/rzahz/rzahzparamexp.htm
+
 http://ngelinux.com/brief-explanation-string-and-array-slicing-in-bash-shell-linux/ --> BASH string slicinig
 
 https://zwischenzugs.com/2018/10/12/eleven-bash-tips-you-might-want-to-know/ 
