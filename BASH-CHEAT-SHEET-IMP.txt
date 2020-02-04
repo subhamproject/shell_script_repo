@@ -2,6 +2,8 @@ https://devhints.io/bash
 
 https://yeonghoey.com/unix-like/expansions/
 
+https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
+
 http://ngelinux.com/brief-explanation-string-and-array-slicing-in-bash-shell-linux/ --> BASH string slicinig
 
 https://zwischenzugs.com/2018/10/12/eleven-bash-tips-you-might-want-to-know/ 
