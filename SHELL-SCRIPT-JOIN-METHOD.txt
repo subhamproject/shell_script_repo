@@ -1,0 +1,12 @@
+#!/bin/bash
+
+RESULT=""
+for X in foo bar baz
+do
+    RESULT="${RESULT:+${RESULT}, }${X}"
+done
+
+echo $RESULT
+
+
+https://chris-lamb.co.uk/posts/joining-strings-in-posix-shell
