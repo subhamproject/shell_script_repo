@@ -1,0 +1,14 @@
+https://stackoverflow.com/questions/23013352/how-to-use-amp-gt-commands-in-linux-shell
+
+I suspect this has undergone an HTML entity translation. You want to reverse this e.g.
+
+&amp; becomes &
+and
+
+&gt; becomes >
+So (for example)
+
+cd /dir &amp;&amp; ls &gt; filename
+would become
+
+cd /dir && ls > filename
