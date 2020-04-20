@@ -1,0 +1,6 @@
+https://stackoverflow.com/questions/40928492/what-does-var-mean-in-shell-script
+
+https://unix.stackexchange.com/questions/520550/what-does-mean-in-shell-scripting
+
+
+https://www.linuxtopia.org/online_books/advanced_bash_scripting_guide/parameter-substitution.html --advance shell scripting
