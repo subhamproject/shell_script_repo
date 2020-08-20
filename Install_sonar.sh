@@ -1,4 +1,5 @@
 # Generic script to install sonarqube with postgress in any flavour of linux
+# https://gist.github.com/ikennaokpala/7547006
 #!/bin/bash
 
 DIR="/sonarqube"
