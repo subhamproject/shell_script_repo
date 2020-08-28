@@ -1,0 +1,3 @@
+https://linuxhint.com/bash_read_command/
+
+https://landoflinux.com/linux_bash_scripting_read.html
