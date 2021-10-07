@@ -1,0 +1,5 @@
+https://www.baeldung.com/linux/exec-command-in-shell-script
+https://linuxize.com/post/bash-redirect-stderr-stdout/ --> IMP
+
+
+https://itectec.com/unixlinux/bash-whats-the-difference-between-eval-and-exec/ -
