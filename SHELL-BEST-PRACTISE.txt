@@ -1,0 +1,12 @@
+https://belief-driven-design.com/9-tips-safer-shell-scripts-5b8d6afd618/ - IMP
+
+https://bertvv.github.io/cheat-sheets/Bash.html
+
+https://www.tothenew.com/blog/foolproof-your-bash-script-some-best-practices/
+
+
+https://codeburst.io/13-tips-tricks-for-writing-shell-scripts-with-awesome-ux-19a525ae05ae --> IMP
+
+
+https://betterprogramming.pub/best-practices-for-bash-scripts-17229889774d
+
