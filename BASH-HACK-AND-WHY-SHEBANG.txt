@@ -1,0 +1,24 @@
+https://madhavbahl.tech/shebang-everything/
+
+
+https://dev.to/meleu/what-the-shebang-really-does-and-why-it-s-so-important-in-your-shell-scripts-2755 --> How Shebang Behave
+
+
+https://wiki.bash-hackers.org/scripting/basics#the_shebang --> IMP 
+
+Block commenting
+To temporarily disable complete blocks of code you would normally have to prefix every line of that block with a # (hashmark) to make it a comment. There's a little trick, using the pseudo command : (colon) and input redirection. The : does nothing, it's a pseudo command, so it does not care about standard input. In the following code example, you want to test mail and logging, but not dump the database, or execute a shutdown:
+
+#!/bin/bash
+# Write info mails, do some tasks and bring down the system in a safe way
+echo "System halt requested" | mail -s "System halt" netadmin@example.com
+logger -t SYSHALT "System halt requested"
+ 
+##### The following "code block" is effectively ignored
+: <<"SOMEWORD"
+/etc/init.d/mydatabase clean_stop
+mydatabase_dump /var/db/db1 /mnt/fsrv0/backups/db1
+logger -t SYSHALT "System halt: pre-shutdown actions done, now shutting down the system"
+shutdown -h NOW
+SOMEWORD
+##### The ignored codeblock ends here
