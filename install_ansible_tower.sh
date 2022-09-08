@@ -12,8 +12,8 @@ function die() {
 }
 
 function check_exist() {
-    [ ! -z "$(command -v python3)" ] || die "The 'python3' command is missing - Please install"
-    [ ! -z "$(command -v ansible)" ] || die "The 'ansible' command is missing - Please install"
+    [ ! -z "$(command -v python3)" ] || die "THE 'python3' COMMAND IS MISSING - PLEASE INSTALL AND TRY AGAIN"
+    [ ! -z "$(command -v ansible)" ] || die "THE 'ansible' COMMAND IS MISSING - PLEASE INSTALL AND TRY AGAIN"
 }
 
 
@@ -35,11 +35,11 @@ esac
 
 function check_hardware_requirement() {
 check_os_supported
-[[ ! $(grep '^processor' /proc/cpuinfo | sort -u | wc -l) -ge 2 ]] && { echo "Please upgrade your server with at least 2 core CPU" ; exit 1 ; }
+[[ ! $(grep '^processor' /proc/cpuinfo | sort -u | wc -l) -ge 2 ]] && { echo "PLEASE UPGRADE YOUR SERVER WITH AT LEAST 2 CORE CPU - AND TRY AGAIN" ; exit 1 ; }
 RAM_KB=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 RAM_GB=$(expr $RAM_KB / 1024 / 1024)
-[[ ! $RAM_GB -ge 7 ]] &&  { echo "Please upgrade your server with at least 8GB RAM" ; exit 1 ; }
-[[ ! $(df -h|grep -vE 'tmpfs|devtmpfs|docker'|sed '1d'|awk '{print $2}'|sed 's|G||g') -ge 20 ]] &&  { echo "Please create at least 20GB Filesystem for Tower" ; exit 1 ; }
+[[ ! $RAM_GB -ge 7 ]] &&  { echo "PLEASE UPGRADE YOUR SERVER WITH AT LEAST 8GB RAM - AND TRY AGAIN" ; exit 1 ; }
+[[ ! $(df -h|grep -vE 'tmpfs|devtmpfs|docker'|sed '1d'|awk '{print $2}'|sed 's|G||g') -ge 20 ]] &&  { echo "YOU NEED TO HAVE AT LEAST 20GB DISK SIZE FOR ANSIBLE TOWER TO RUN - CREATE AND TRY AGAIN" ; exit 1 ; }
 }
 
 
