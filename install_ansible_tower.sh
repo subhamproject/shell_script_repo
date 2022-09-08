@@ -2,6 +2,20 @@
 
 #https://releases.ansible.com/ansible-tower/setup/?extIdCarryOver=true&sc_cid=701f2000001OH7YAAW
 
+function log() {
+    echo "$1" >&2
+}
+
+function die() {
+    log "$1"
+    exit 1
+}
+
+function check_exist() {
+    [ ! -z "$(command -v python3)" ] || die "The 'python3' command is missing - Please install"
+    [ ! -z "$(command -v ansible)" ] || die "The 'ansible' command is missing - Please install"
+}
+
 
 function check_os_supported() {
 case $(egrep '^(NAME)=' /etc/os-release|cut -d'=' -f2|sed 's|"||g') in
@@ -27,9 +41,10 @@ RAM_GB=$(expr $RAM_KB / 1024 / 1024)
 }
 
 
+
 function main() {
 check_hardware_requirement
-
+check_exist
 DATA_DIR="/data"
 
 TOWER_VERSION=${1:-ansible-tower-setup-3.7.0-4.tar.gz}
