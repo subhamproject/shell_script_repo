@@ -20,8 +20,10 @@ function check_exist() {
 function check_os_supported() {
 case $(egrep '^(NAME)=' /etc/os-release|cut -d'=' -f2|sed 's|"||g') in
 "Amazon Linux")
-echo "THIS OS IS NOT SUPPORTED FOR ANSIBLE TOWER"
-echo "PLEASE TRY IN OTHER OS - RHEL (or) CENTOS"
+printf "THIS OS IS NOT SUPPORTED FOR ANSIBLE TOWER.."
+echo " OK!"
+printf "PLEASE TRY IN OTHER OS - RHEL (or) CENTOS.."
+echo " OK!"
 exit 1
 ;;
 *)
