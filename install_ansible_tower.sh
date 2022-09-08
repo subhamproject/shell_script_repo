@@ -61,7 +61,7 @@ fi
 bash setup.sh
 [ $? -eq 0 ] && \
 echo -e '\n'
-printf "ANSIBLE TOWER SETUP HAS BEEN DONE  - PLEASE TRY TO ACCESS IT VIA SERVER IP.."
+printf "ANSIBLE TOWER SETUP HAS BEEN DONE  - PLEASE TRY TO ACCESS IT VIA SERVER IP :- $(curl -s icanhazip.com)..."
 echo " OK!"
 printf "DEFAULT LOGIN ID IS :- admin.."
 echo " OK!"
