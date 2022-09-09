@@ -29,7 +29,7 @@ trap clean EXIT
 
 function create_folder() {
 local FOLDER_NAME="$1"
-curl -s -XPOST "${URL:-https://jenkins-test.devops.lmvi.net}/createItem?name=${FOLDER_NAME/ /%20}&mode=com.cloudbees.hudson.plugins.folder.Folder&from=&json=%7B%22name%22%3A%22FolderName%22%2C%22mode%22%3A%22com.cloudbees.hudson.plugins.folder.Folder%22%2C%22from%22%3A%22%22%2C%22Submit%22%3A%22OK%22%7D&Submit=OK" --user ${USER_NAME}:${TOKEN} -H "Content-Type:application/x-www-form-urlencoded"
+curl -s -XPOST "${URL:-https://jenkins.devops.com}/createItem?name=${FOLDER_NAME/ /%20}&mode=com.cloudbees.hudson.plugins.folder.Folder&from=&json=%7B%22name%22%3A%22FolderName%22%2C%22mode%22%3A%22com.cloudbees.hudson.plugins.folder.Folder%22%2C%22from%22%3A%22%22%2C%22Submit%22%3A%22OK%22%7D&Submit=OK" --user ${USER_NAME}:${TOKEN} -H "Content-Type:application/x-www-form-urlencoded"
 [ $? -eq 0 ] && echo "Folder: \"${FOLDER_NAME/ /%20}\" created successfully." || echo "Folder: \"${FOLDER_NAME/ /%20}\" already exist"
 }
 
@@ -37,9 +37,9 @@ function create_job() {
 local JOB_NAME="$1"
 local FOLDER_NAME="$2"
 local XML="$3"
-STATUS=$(curl -s -XGET "${URL:-https://jenkins-test.devops.lmvi.net}/job/${FOLDER_NAME/ /%20}/checkJobName?value=${JOB_NAME}" --user ${USER_NAME}:${TOKEN})
+STATUS=$(curl -s -XGET "${URL:-https://jenkins.devops.com}/job/${FOLDER_NAME/ /%20}/checkJobName?value=${JOB_NAME}" --user ${USER_NAME}:${TOKEN})
 if [[ $(echo $STATUS|grep exists|wc -l) -eq 0 ]];then
-curl -s -XPOST "${URL:-https://jenkins-test.devops.lmvi.net}/job/${FOLDER_NAME/ /%20}/createItem?name=${JOB_NAME}" --data-binary @${XML} -H "Content-Type:text/xml" --user ${USER_NAME}:${TOKEN}
+curl -s -XPOST "${URL:-https://jenkins.devops.com}/job/${FOLDER_NAME/ /%20}/createItem?name=${JOB_NAME}" --data-binary @${XML} -H "Content-Type:text/xml" --user ${USER_NAME}:${TOKEN}
 [ $? -eq 0 ] && echo "Jenkins Job: \"${JOB_NAME}\" created successfully."
 else
 echo "Jenkins Job: \"${JOB_NAME}\" already exist."
@@ -64,7 +64,7 @@ set -- $(echo $MAIN_BRANCH|sed s'|,| |g')
 for BRANCH in "$@"
 do
 unset NEW_REGEX
-curl -s -XGET ${URL:-https://jenkins-test.devops.lmvi.net}/job/${FOLDER_NAME/ /%20}/job/${JOB_NAME}/config.xml -o ${DOWNLOAD_XML} --user ${USER_NAME}:${TOKEN}
+curl -s -XGET ${URL:-https://jenkins.devops.com}/job/${FOLDER_NAME/ /%20}/job/${JOB_NAME}/config.xml -o ${DOWNLOAD_XML} --user ${USER_NAME}:${TOKEN}
 REGEX="$(cat $FILE |grep regex|cut -d'[' -f1|cut -d'(' -f2|sed 's|PR.*||')"
 NEW_REGEX="$REGEX"
 NEW_REGEX+="$BRANCH|"
@@ -73,7 +73,7 @@ echo "Branch \"${BRANCH}\" already added for \"${JOB_NAME}\" job,skipping..!"
 else
 cat $FILE|sed "s;${REGEX};${NEW_REGEX};" > ${DOWNLOAD_XML}.$$
 [ $? -eq 0 ] && \
-curl -s -XPOST ${URL:-https://jenkins-test.devops.lmvi.net}/job/${FOLDER_NAME/ /%20}/job/${JOB_NAME}/config.xml --data-binary "@${DOWNLOAD_XML}.$$" --user ${USER_NAME}:${TOKEN}
+curl -s -XPOST ${URL:-https://jenkins.devops.com}/job/${FOLDER_NAME/ /%20}/job/${JOB_NAME}/config.xml --data-binary "@${DOWNLOAD_XML}.$$" --user ${USER_NAME}:${TOKEN}
 [ $? -eq 0 ] && echo "Branch \"${BRANCH}\" branch added successfuly in \"${JOB_NAME}\" job." || echo "Branch \"${BRANCH}\" wasn't added,There is some issue,Please check."
 fi
 done
@@ -89,13 +89,13 @@ set -- $(echo $MAIN_BRANCH|sed s'|,| |g')
 for BRANCH in "$@"
 do
 unset NEW_REGEX
-curl -s -XGET ${URL:-https://jenkins-test.devops.lmvi.net}/job/${FOLDER_NAME/ /%20}/job/${JOB_NAME}/config.xml -o ${DOWNLOAD_XML} --user ${USER_NAME}:${TOKEN}
+curl -s -XGET ${URL:-https://jenkins.devops.com}/job/${FOLDER_NAME/ /%20}/job/${JOB_NAME}/config.xml -o ${DOWNLOAD_XML} --user ${USER_NAME}:${TOKEN}
 NEW_REGEX+="|$BRANCH"
 if [[ "$(cat $FILE |grep -w "$BRANCH" |wc -l)" -eq "1" ]];then
 echo "Branch \"${BRANCH}\" present in \"${JOB_NAME}\" job removing it."
 cat $FILE|sed "s;${NEW_REGEX};;" > ${DOWNLOAD_XML}.$$
 [ $? -eq 0 ] && \
-curl -s -XPOST ${URL:-https://jenkins-test.devops.lmvi.net}/job/${FOLDER_NAME/ /%20}/job/${JOB_NAME}/config.xml --data-binary "@${DOWNLOAD_XML}.$$" --user ${USER_NAME}:${TOKEN}
+curl -s -XPOST ${URL:-https://jenkins.devops.com}/job/${FOLDER_NAME/ /%20}/job/${JOB_NAME}/config.xml --data-binary "@${DOWNLOAD_XML}.$$" --user ${USER_NAME}:${TOKEN}
 [ $? -eq 0 ] && echo "Branch \"${BRANCH}\" removed successfuly from \"${JOB_NAME}\" job." || echo "Brach \"${BRANCH}\" wasn't deleted,There is some issue,Please check."
 else
 echo "No such branch \"${BRANCH}\" present in \"${JOB_NAME}\" job,skipping..!"
