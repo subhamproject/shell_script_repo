@@ -39,7 +39,7 @@ check_os_supported
 RAM_KB=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 RAM_GB=$(expr $RAM_KB / 1024 / 1024)
 [[ ! $RAM_GB -ge 7 ]] &&  { echo "PLEASE UPGRADE YOUR SERVER WITH AT LEAST 8GB RAM - AND TRY AGAIN" ; exit 1 ; }
-[[ ! $(df -h|grep -vE 'tmpfs|devtmpfs|docker'|sed '1d'|awk '{print $2}'|sed 's|G||g') -ge 20 ]] &&  { echo "YOU NEED TO HAVE AT LEAST 20GB DISK SIZE FOR ANSIBLE TOWER TO RUN - CREATE AND TRY AGAIN" ; exit 1 ; }
+[[ ! $(df -h|grep -vE 'tmpfs|devtmpfs|docker'|sed '1d'|awk '{print $2}'|sed 's|G||g'|head -1) -ge 20 ]] &&  { echo "YOU NEED TO HAVE AT LEAST 20GB DISK SIZE FOR ANSIBLE TOWER TO RUN - CREATE AND TRY AGAIN" ; exit 1 ; }
 }
 
 
