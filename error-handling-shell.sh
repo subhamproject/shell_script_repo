@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#https://encore.tech/automating-red-hat-enterprise-linux-patching-with-ansible-part-2-of-2/
+
 # @brief actions required to be conducted before updates are applied
 #        and/or servers are rebooted.  
 logFile="/tmp/pre_update.log"
@@ -12,6 +14,7 @@ function log_msg {
   log_msg="${@:2}"
   echo "[$current_time] $log_level - $log_msg" >> $logFile
 }
+
 function log_error {
   log_msg "ERROR" "$@"
 }
