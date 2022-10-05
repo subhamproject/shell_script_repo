@@ -1,4 +1,5 @@
 #https://www.deepanseeralan.com/tech/generate-expired-ssl-certificates/
+#https://github.com/deepns/fun-with-openssl/blob/main/generate-expired-certs/generate_expired_certs.sh
 
 #! /usr/bin/env bash
 
