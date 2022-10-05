@@ -1,5 +1,7 @@
 #https://www.deepanseeralan.com/tech/generate-expired-ssl-certificates/
 #https://github.com/deepns/fun-with-openssl/blob/main/generate-expired-certs/generate_expired_certs.sh
+#https://www.linux.com/news/changing-what-time-process-thinks-it-libfaketime/
+#https://askubuntu.com/questions/1198619/bash-script-to-calculate-remaining-days-to-expire-ssl-certs-in-a-website
 
 #! /usr/bin/env bash
 
