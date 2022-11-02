@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://gist.github.com/scottrigby/906f72081bac084602929f15c488bb15 --> REFER This IMP
+
 shopt -s xpg_echo
 
 echo -n "Downloading nexus from source:  "
