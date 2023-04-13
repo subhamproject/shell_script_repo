@@ -1,0 +1,12 @@
+#!/bin/bash
+        INSTANCE_ID=`curl http://169.254.169.254/latest/meta-data/instance-id 2>/dev/null`
+        REGION=`curl -s http://169.254.169.254/latest/dynamic/instance-identity/document 2>/dev/null | jq -r .region`
+        # Find the Auto Scaling Group name from the Elastic Beanstalk environment
+        ASG=`aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" \
+                        --region $REGION --output json | jq -r '.[][] | select(.Key=="aws:autoscaling:groupName") | .Value'`
+        LCS=`aws autoscaling describe-auto-scaling-instances --region $REGION --instance-ids $INSTANCE_ID  | jq .AutoScalingInstances[].LifecycleState`
+        if [ $LCS == '"Pending:Wait"' ]
+        then
+            RESULT=`aws autoscaling complete-lifecycle-action --lifecycle-action-result CONTINUE --region $REGION --lifecycle-hook-name $ASG \
+              --auto-scaling-group-name $ASG --instance-id $INSTANCE_ID`
+        fi
