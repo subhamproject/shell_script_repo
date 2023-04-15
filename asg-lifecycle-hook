@@ -22,7 +22,7 @@
         # Find the Auto Scaling Group name from the Elastic Beanstalk environment
         ASG=`aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" \
                         --region $REGION --output json | jq -r '.[][] | select(.Key=="aws:autoscaling:groupName") | .Value'`
-        HOOK_NAME=`aws autoscaling describe-lifecycle-hooks --auto-scaling-group-name $ASG | jq '.[][].LifecycleHookName'`
+        HOOK_NAME=`aws --region $REGION autoscaling describe-lifecycle-hooks --auto-scaling-group-name $ASG | jq -r '.[][].LifecycleHookName'`
         LCS=`aws autoscaling describe-auto-scaling-instances --region $REGION --instance-ids $INSTANCE_ID  | jq .AutoScalingInstances[].LifecycleState`
         if [ $LCS == '"Pending:Wait"' ]
         then
